@@ -53,7 +53,7 @@ $time_start = microtime(true);
 foreach ($useragent as $u)
 {
 
-	// Detect Device Type data from User-Agens
+	// Detect Device Type data from User-Agents
 	$result = $Browser->getDevice($u);
 
 	echo '<div style="font-size:16px; font-weight:bold"><pre>';

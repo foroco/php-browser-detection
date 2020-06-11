@@ -53,7 +53,7 @@ $time_start = microtime(true);
 foreach ($useragent as $u)
 {
 
-	// Detect Browser data from User-Agens
+	// Detect Browser data from User-Agents
 	$result = $Browser->getBrowser($u);
 
 	echo '<div style="font-size:16px; font-weight:bold"><pre>';

@@ -2,7 +2,7 @@
 
 A PHP library to detect browser, OS, platform and device type by User-Agent parsing.\
 This library focused on high performance and low memory usage HTTP client parsing.\
-Uses a simple and fast algorithm to accurate detection more than 100 browsers types and ~ 58 OS types.\
+Uses a simple and fast algorithm to accurate detection more than 120 browsers types and ~ 58 OS types.\
 For most commonly browsers parsing process tooks less than 0.0005 second even on low-level shared hosting.\
 In the case of very unusual User-Agents recognized time is less than 0.0008 second for same conditioned hosting environment.\
 The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
@@ -38,7 +38,7 @@ Second argument (optional) may contains 'JSON' if you want to get returned resul
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -64,6 +64,17 @@ $result = $Browser->getAll($useragent, 'JSON');
 
 // ... etc
 ?>
+```
+
+The library class `BrowserDetection` also contains special method `setTouchSupport()` (optional, available from version 1.1).\
+This method is necessary to detect mobile browsers in `Desktop Mode` condition (Android and iOS).\
+For `Desktop Mode` detection `setTouchSupport()` method should call if browser supports Touch events.\
+Touch events detection performed by client-side JavaScript code in the target browser. Example:
+
+```javascript
+if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+// Touch Event detected
+}
 ```
 
 ## Description for returned variables
@@ -146,6 +157,10 @@ Returns `1` number if Android Webview mode detected or returns `0` if it's not.
 **Browser iOS Webview** (`browser_ios_webview`)\
 Returns `1` number if iOS Webview mode detected or returns `0` if it's not.
 
+**Browser Desktop Mode** (`browser_desktop_mode`)\
+Returns `1` number if mobile browser works in `Desktop Mode` or returns `0` if it's not detected.\
+`setTouchSupport()` method should call for `Desktop Mode` detection if browser supports Touch events.
+
 ## Usage Examples
 
 See follow examples to understand library usage use cases.
@@ -157,7 +172,7 @@ To detect all possible environment data use:
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.4150.0 Iron Safari/537.36';
 $result = $Browser->getAll($useragent);
@@ -187,6 +202,7 @@ Array
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
+	[browser_desktop_mode] => 0
 )
 ```
 
@@ -197,7 +213,7 @@ To parse only OS data use:
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (Android 8.1.0; Tablet; rv:68.6.0) Gecko/68.6.0 Firefox/68.6.0';
 $result = $Browser->getBrowser($useragent);
@@ -225,7 +241,7 @@ To parse only browser data use:
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPad; CPU OS 9_3_4 like Mac OS X) AppleWebKit/601.1 (KHTML, like Gecko) CriOS/80.0.3987.122 Mobile/13G35 Safari/601.1.46';
 $result = $Browser->getBrowser($useragent);
@@ -249,6 +265,7 @@ Array
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
+	[browser_desktop_mode] => 0
 )
 ```
 
@@ -259,7 +276,7 @@ To parse only device type data use:
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = 'MEmpresas/20180706 CFNetwork/808.2.16 Darwin/17.4.0';
 $result = $Browser->getBrowser($useragent);
@@ -276,6 +293,48 @@ Array
 )
 ```
 
+### Desktop Mode Detection
+
+To detect mobile browser works in `Desktop Mode` use:
+
+```php
+<?php
+require_once('BrowserDetection.php');
+$Browser = new foroco\BrowserDetection();
+
+$useragent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36';
+$Browser->setTouchSupport(); // Call if Touch events detected in browser by JavaScript code ('ontouchstart' in window)
+$result = $Browser->getBrowser($useragent);
+print_r($result);
+?>
+```
+
+Returns:
+
+```
+Array
+(
+    [os_type] => mobile
+    [os_family] => android
+    [os_name] => Android
+    [os_version] => 0
+    [os_title] => Android
+    [device_type] => mobile
+    [browser_name] => Chrome
+    [browser_version] => 81
+    [browser_title] => Chrome 81
+    [browser_chrome_original] => 1
+    [browser_firefox_original] => 0
+    [browser_safari_original] => 0
+    [browser_chromium_version] => 81
+    [browser_gecko_version] => 0
+    [browser_webkit_version] => 0
+    [browser_android_webview] => 0
+    [browser_ios_webview] => 0
+    [browser_desktop_mode] => 1
+)
+```
+
 ### Detect All (JSON)
 
 To pasre all possible environment data and returns JSON format string:
@@ -283,7 +342,7 @@ To pasre all possible environment data and returns JSON format string:
 ```php
 <?php
 require_once('BrowserDetection.php');
-$Browser = new BrowserDetection();
+$Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36';
 $result = $Browser->getAll($useragent);
@@ -294,7 +353,7 @@ print_r($result);
 Returns:
 
 ```
-{"os_type":"mobile","os_family":"macintosh","os_name":"iOS","os_version":6,"os_title":"iOS 6","device_type":"mobile","browser_name":"Chrome","browser_version":78,"browser_title":"Chrome 78","browser_chrome_original":1,"browser_firefox_original":0,"browser_safari_original":0,"browser_chromium_version":78,"browser_gecko_version":0,"browser_webkit_version":0,"browser_android_webview":0,"browser_ios_webview":0}
+{"os_type":"mobile","os_family":"macintosh","os_name":"iOS","os_version":6,"os_title":"iOS 6","device_type":"mobile","browser_name":"Chrome","browser_version":78,"browser_title":"Chrome 78","browser_chrome_original":1,"browser_firefox_original":0,"browser_safari_original":0,"browser_chromium_version":78,"browser_gecko_version":0,"browser_webkit_version":0,"browser_android_webview":0,"browser_ios_webview":0,"browser_desktop_mode":0}
 ```
 
 ## Benchmarking Tests

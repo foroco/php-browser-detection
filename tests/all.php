@@ -53,7 +53,7 @@ $time_start = microtime(true);
 foreach ($useragent as $u)
 {
 
-	// Detect all possible environment data from User-Agens
+	// Detect all possible environment data from User-Agents
 	$result = $Browser->getAll($u);
 
 	echo '<div style="font-size:16px; font-weight:bold"><pre>';

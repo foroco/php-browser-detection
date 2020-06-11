@@ -53,7 +53,7 @@ $time_start = microtime(true);
 foreach ($useragent as $u)
 {
 
-	// Detect OS data from User-Agens
+	// Detect OS data from User-Agents
 	$result = $Browser->getOS($u);
 
 	echo '<div style="font-size:16px; font-weight:bold"><pre>';
