@@ -202,7 +202,7 @@ Array
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
-	[browser_desktop_mode] => 0
+    [browser_desktop_mode] => 0
 )
 ```
 
@@ -265,7 +265,7 @@ Array
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
-	[browser_desktop_mode] => 0
+    [browser_desktop_mode] => 0
 )
 ```
 
