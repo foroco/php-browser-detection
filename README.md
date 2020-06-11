@@ -362,7 +362,7 @@ Benchmarking was performed on a low-level shared hosting.\
 Test server configuration: RedHat Linux + LiteSpeed + PHP Extension.\
 Test conditions based on collection of random ~446000 non repeated real life User-Agent strings.
 
-Recognition performance PHP v5.3 (Requests Per Second):
+Recognition performance in the different PHP versions (Requests Per Second):
 
 `Benchmark PHP 5.3:`
 

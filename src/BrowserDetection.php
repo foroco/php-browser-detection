@@ -73,7 +73,6 @@ class BrowserDetection
 		
 		if (substr($data, 0, 1)==='/' && substr($data, -1)==='/')
 		{
-			//echo $data."<br>";
 			if ($case_s == FALSE) $data = $data.'i';
 			if (preg_match($data, $this->useragent, $matches))
 			{
@@ -89,19 +88,18 @@ class BrowserDetection
 		}
 		else
 		{
-		    $data_a = explode('|', $data);
-	        foreach ($data_a as $v)
-	        {
-	        	//echo $v."<br>";
-	            if ($case_s == TRUE)
-	    		{
-	    			if (strpos($this->useragent, $v) !== FALSE) return TRUE;
-	    		}
-	    		else
-	    		{
-	    			if (stripos($this->useragent, $v) !== FALSE) return TRUE;
-	    		}
-	        }
+			$data_a = explode('|', $data);
+			foreach ($data_a as $v)
+			{
+				if ($case_s == TRUE)
+				{
+					if (strpos($this->useragent, $v) !== FALSE) return TRUE;
+				}
+				else
+				{
+					if (stripos($this->useragent, $v) !== FALSE) return TRUE;
+				}
+			}
 		}
 		
 		return FALSE;
@@ -478,7 +476,7 @@ class BrowserDetection
 			if ($os_need_continue && $this->result_ios!=FALSE && !$this->match_ua('Windows Phone|Windows Mobile'))
 			{
 				$this->result_os_version = 0;
-			    $this->result_os_name = 'iOS';
+				$this->result_os_name = 'iOS';
 				$matches = $this->match_ua('/\sOS\s(\d+)[_.](\d+)/');
 				$version = $matches[1];
 				$version_minor = $matches[2];
