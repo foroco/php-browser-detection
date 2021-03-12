@@ -5,7 +5,11 @@ $Browser = new foroco\BrowserDetection();
 
 // Testing some main and rare User-Agents
 
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16.4) AppleWebKit/604.5.8 (KHTML, like Gecko) Chrome/59.0.3061.40 Safari/604.5.8';
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
+$useragent[] = 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.00';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 4.4.4; en-us; SAMSUNG SM-N910C Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/2.0 Chrome/34.0.1847.76 Mobile Safari/537.36';
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363';
 $useragent[] = 'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0';
 $useragent[] = 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko';
@@ -47,6 +51,16 @@ $useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_3 like Mac OS X) AppleWe
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0 Cyberfox/52.7.0';
 $useragent[] = 'Mozilla/3.0 (compatible; MSIE3.00; Windows 2002)';
 $useragent[] = 'Mozilla/4.0 (compatible; MSIE 4.01; AOL 4.0; Mac_68K)';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.9) ArtisReader/28.7.2 ArtisBrowser/28.7.2';
+$useragent[] = 'Mozilla/5.0 (Android; Mobile) Gecko/68.0 Firefox/68.0 QwantMobile/3.5';
+$useragent[] = 'QwantMobile/2.0 (iPad; CPU OS 11_2_6 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) QwantiOS/2.0.2b2 Mobile/15D100 Safari/604.5.6';
+$useragent[] = 'Qwant/2.5 (Android 8.0.0; Mobile; rv:63.0) Gecko/63.0 Firefox/59.0 QwantBrowser/63.0.1';
+$useragent[] = 'QwantMobile/2.0 (Android 7.0; Mobile; rv:57.0) Gecko/57.0 QwantBrowser/57.0';
+$useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.9.5 Chrome/56.0.2924.122 Safari/537.36 Konqueror (WebEnginePart)';
+$useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) konqueror/4.14.26 Safari/534.34';
+$useragent[] = 'Mozilla/5.0 (compatible; Konqueror/3.0-rc6; i686 Linux; 20020613)';
+$useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) KHTML/5.55.0 (like Gecko) Konqueror/5 KIO/5.55';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
 
 $time_start = microtime(true);
 

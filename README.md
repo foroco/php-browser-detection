@@ -2,9 +2,9 @@
 
 A PHP library to detect browser, OS, platform and device type by User-Agent parsing.\
 This library focused on high performance and low memory usage HTTP client parsing.\
-Uses a simple and fast algorithm to accurate detection more than 120 browsers types and ~ 58 OS types.\
-For most commonly browsers parsing process tooks less than 0.0005 second even on low-level shared hosting.\
-In the case of very unusual User-Agents recognized time is less than 0.0008 second for same conditioned hosting environment.\
+Uses a simple and fast algorithm to accurately detect more than 165 browser types and over 60 OS types.\
+For most commonly browsers parsing process took less than 0.0005 second even on low-level shared hosting.\
+In the case of very unusual User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
 The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
 Works by use only one library file and without any third-party libraries dependency.
 
@@ -20,20 +20,20 @@ To install, you can use composer:
 composer require foroco/php-browser-detection
 `
 
-Or simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project and connect it in PHP script by use `require_once` (see usage cases bellow).
+Or simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project and connect it in PHP script by using `require_once` (see usage cases bellow).
 
 ## Usage
 
 The library will try to get environment data from the `HTTP_USER_AGENT` header sent by the HTTP client.
-Library PHP Class `BrowserDetection` contains four public methods which returns Array or JSON string of recognized data from `HTTP_USER_AGENT`:
+Library PHP Class `BrowserDetection` contains four public methods which return Array or JSON string of recognized data from `HTTP_USER_AGENT`:
 
 * `getAll();`
 * `getOS();`
 * `getBrowser();`
 * `getDevice();`
 
-First argument should contains User-Agent string from the `HTTP_USER_AGENT` header or your custom User-Agent string.\
-Second argument (optional) may contains 'JSON' if you want to get returned result as JSON format.
+First argument should contain User-Agent string from the `HTTP_USER_AGENT` header or your custom User-Agent string.\
+Second argument (optional) may contain 'JSON' if you want to get returned result as JSON format.
 
 ```php
 <?php
@@ -69,7 +69,7 @@ $result = $Browser->getAll($useragent, 'JSON');
 The library class `BrowserDetection` also contains special method `setTouchSupport()` (optional, available from version 1.1).\
 This method is necessary to detect mobile browsers in `Desktop Mode` condition (Android and iOS).\
 For `Desktop Mode` detection `setTouchSupport()` method should call if browser supports Touch events.\
-Touch events detection performed by client-side JavaScript code in the target browser. Example:
+Touch events detection is performed by client-side JavaScript code in the target browser. Example:
 
 ```javascript
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
@@ -161,6 +161,10 @@ Returns `1` number if iOS Webview mode detected or returns `0` if it's not.
 Returns `1` number if mobile browser works in `Desktop Mode` or returns `0` if it's not detected.\
 `setTouchSupport()` method should call for `Desktop Mode` detection if browser supports Touch events.
 
+**64 Bits Mode** (`64bits_mode`)\
+Returns `1` number if operating system (OS) and browser work together in 64-bit mode or returns `0` if 64-bit mode not detected.\
+Available only for `getAll();` and `getOS();` methods.\
+
 ## Usage Examples
 
 See follow examples to understand library usage use cases.
@@ -203,6 +207,7 @@ Array
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
     [browser_desktop_mode] => 0
+    [64bits_mode] => 1
 )
 ```
 
@@ -215,7 +220,7 @@ To parse only OS data use:
 require_once('BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
-$useragent = 'Mozilla/5.0 (Android 8.1.0; Tablet; rv:68.6.0) Gecko/68.6.0 Firefox/68.6.0';
+$useragent = 'Mozilla/5.0 (Linux; arm_64; Android 9; LLD-L31) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.136 YaBrowser/20.2.4.153.00 Mobile Safari/537.36';
 $result = $Browser->getBrowser($useragent);
 print_r($result);
 ?>
@@ -229,8 +234,9 @@ Array
     [os_type] => mobile
     [os_family] => android
     [os_name] => Android
-    [os_version] => 8.1
-    [os_title] => Android 8.1
+    [os_version] => 9
+    [os_title] => Android 9
+    [64bits_mode] => 1
 )
 ```
 
@@ -278,8 +284,8 @@ To parse only device type data use:
 require_once('BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
-$useragent = 'MEmpresas/20180706 CFNetwork/808.2.16 Darwin/17.4.0';
-$result = $Browser->getBrowser($useragent);
+$useragent = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36';
+$result = $Browser->getDevice($useragent);
 print_r($result);
 ?>
 ```
@@ -289,13 +295,13 @@ Returns:
 ```
 Array
 (
-    [device_type] => mobile
+    [device_type] => tv
 )
 ```
 
 ### Desktop Mode Detection
 
-To detect mobile browser works in `Desktop Mode` use:
+To detect if mobile browser works in `Desktop Mode` use:
 
 ```php
 <?php
@@ -353,7 +359,7 @@ print_r($result);
 Returns:
 
 ```
-{"os_type":"mobile","os_family":"macintosh","os_name":"iOS","os_version":6,"os_title":"iOS 6","device_type":"mobile","browser_name":"Chrome","browser_version":78,"browser_title":"Chrome 78","browser_chrome_original":1,"browser_firefox_original":0,"browser_safari_original":0,"browser_chromium_version":78,"browser_gecko_version":0,"browser_webkit_version":0,"browser_android_webview":0,"browser_ios_webview":0,"browser_desktop_mode":0}
+{"os_type":"mobile","os_family":"macintosh","os_name":"iOS","os_version":6,"os_title":"iOS 6","device_type":"mobile","browser_name":"Chrome","browser_version":78,"browser_title":"Chrome 78","browser_chrome_original":1,"browser_firefox_original":0,"browser_safari_original":0,"browser_chromium_version":78,"browser_gecko_version":0,"browser_webkit_version":0,"browser_android_webview":0,"browser_ios_webview":0,"browser_desktop_mode":0,"64bits_mode":0}
 ```
 
 ## Benchmarking Tests
@@ -362,27 +368,7 @@ Benchmarking was performed on a low-level shared hosting.\
 Test server configuration: RedHat Linux + LiteSpeed + PHP Extension.\
 Test conditions based on collection of random ~446000 non repeated real life User-Agent strings.
 
-Recognition performance in the different PHP versions (Requests Per Second):
-
-`Benchmark PHP 5.3:`
-
-```
-getAll: ~ 5300 rps
-getOS: ~ 24000 rps
-getBrowser: ~ 5900 rps
-getDevice: ~ 16000  rps
-```
-
-`Benchmark PHP 5.6:`
-
-```
-getAll: ~ 6300 rps
-getOS: ~ 31000 rps
-getBrowser: ~ 7600 rps
-getDevice: ~ 19000 rps
-```
-
-`Benchmark PHP 7.3:`
+Recognition performance in PHP 7.3 (Requests Per Second):
 
 ```
 getAll: ~ 31000 rps
@@ -395,7 +381,7 @@ getDevice: ~ 70000 rps
 
 The MIT License (MIT)
 
-Copyright (c) 2020 Artem Murugov
+Copyright (c) 2020-2021 Artem Murugov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
