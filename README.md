@@ -4,7 +4,7 @@ A PHP library to detect browser, OS, platform and device type by User-Agent pars
 This library focused on high performance and low memory usage HTTP client parsing.\
 Uses a simple and fast algorithm to accurately detect more than 165 browser types and over 60 OS types.\
 For most commonly browsers parsing process took less than 0.0005 second even on low-level shared hosting.\
-In the case of very unusual User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
+In the case of rare User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
 The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
 Works by use only one library file and without any third-party libraries dependency.
 
@@ -163,7 +163,7 @@ Returns `1` number if mobile browser works in `Desktop Mode` or returns `0` if i
 
 **64 Bits Mode** (`64bits_mode`)\
 Returns `1` number if operating system (OS) and browser work together in 64-bit mode or returns `0` if 64-bit mode not detected.\
-Available only for `getAll();` and `getOS();` methods.\
+Available only for `getAll();` and `getOS();` methods.
 
 ## Usage Examples
 
@@ -221,7 +221,7 @@ require_once('BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (Linux; arm_64; Android 9; LLD-L31) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.136 YaBrowser/20.2.4.153.00 Mobile Safari/537.36';
-$result = $Browser->getBrowser($useragent);
+$result = $Browser->getOS($useragent);
 print_r($result);
 ?>
 ```
@@ -310,7 +310,7 @@ $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36';
 $Browser->setTouchSupport(); // Call if Touch events detected in browser by JavaScript code ('ontouchstart' in window)
-$result = $Browser->getBrowser($useragent);
+$result = $Browser->getAll($useragent);
 print_r($result);
 ?>
 ```
@@ -338,6 +338,7 @@ Array
     [browser_android_webview] => 0
     [browser_ios_webview] => 0
     [browser_desktop_mode] => 1
+    [64bits_mode] => 0
 )
 ```
 
@@ -362,13 +363,13 @@ Returns:
 {"os_type":"mobile","os_family":"macintosh","os_name":"iOS","os_version":6,"os_title":"iOS 6","device_type":"mobile","browser_name":"Chrome","browser_version":78,"browser_title":"Chrome 78","browser_chrome_original":1,"browser_firefox_original":0,"browser_safari_original":0,"browser_chromium_version":78,"browser_gecko_version":0,"browser_webkit_version":0,"browser_android_webview":0,"browser_ios_webview":0,"browser_desktop_mode":0,"64bits_mode":0}
 ```
 
-## Benchmarking Tests
+## Benchmarking Test
 
 Benchmarking was performed on a low-level shared hosting.\
 Test server configuration: RedHat Linux + LiteSpeed + PHP Extension.\
 Test conditions based on collection of random ~446000 non repeated real life User-Agent strings.
 
-Recognition performance in PHP 7.3 (Requests Per Second):
+User-Agent recognition performance in PHP 7.3 (requests per second):
 
 ```
 getAll: ~ 31000 rps
