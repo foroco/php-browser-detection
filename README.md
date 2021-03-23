@@ -14,7 +14,7 @@ This library requires PHP 5.3 or higher.
 
 ## Manual installation
 
-1. Simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project;\
+1. Simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project;
 2. Connect PHP library file by using `require_once`:
 
 ```php
@@ -206,12 +206,13 @@ To detect all possible environment data use:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.4150.0 Iron Safari/537.36';
 $result = $Browser->getAll($useragent);
 print_r($result);
+
 ?>
 ```
 
@@ -248,12 +249,13 @@ To parse only OS data use:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (Linux; arm_64; Android 9; LLD-L31) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.136 YaBrowser/20.2.4.153.00 Mobile Safari/537.36';
 $result = $Browser->getOS($useragent);
 print_r($result);
+
 ?>
 ```
 
@@ -277,12 +279,13 @@ To parse only browser data use:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPad; CPU OS 9_3_4 like Mac OS X) AppleWebKit/601.1 (KHTML, like Gecko) CriOS/80.0.3987.122 Mobile/13G35 Safari/601.1.46';
 $result = $Browser->getBrowser($useragent);
 print_r($result);
+
 ?>
 ```
 
@@ -312,12 +315,13 @@ To parse only device type data use:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.2 Chrome/63.0.3239.84 TV Safari/537.36';
 $result = $Browser->getDevice($useragent);
 print_r($result);
+
 ?>
 ```
 
@@ -336,13 +340,14 @@ To detect if mobile browser works in `Desktop Mode` use:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36';
 $Browser->setTouchSupport(); // Call if Touch events detected in browser by JavaScript code ('ontouchstart' in window)
 $result = $Browser->getAll($useragent);
 print_r($result);
+
 ?>
 ```
 
@@ -379,12 +384,13 @@ To pasre all possible environment data and returns JSON format string:
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36';
 $result = $Browser->getAll($useragent);
 print_r($result);
+
 ?>
 ```
 
