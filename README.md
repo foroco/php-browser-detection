@@ -12,15 +12,44 @@ Works by use only one library file and without any third-party libraries depende
 
 This library requires PHP 5.3 or higher.
 
-## Installation
+## Manual installation
 
-To install, you can use composer:
+1. Simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project;\
+2. Connect PHP library file by using `require_once`:
+
+```php
+<?php
+
+require_once('BrowserDetection.php');
+
+?>
+```
+
+## Installation by using Composer
+
+Install this library using Composer:
 
 `
 composer require foroco/php-browser-detection
 `
 
-Or simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project and connect it in PHP script by using `require_once` (see usage cases bellow).
+Update library package by running a command:
+
+`
+composer update foroco/php-browser-detection
+`
+
+The first step requires the Composer autoloader:
+
+```php
+<?php
+
+require ('vendor/autoload.php');
+
+// If you use PHP in Windows OS use another path style:
+// require ('vendor\autoload.php');
+?>
+```
 
 ## Usage
 
@@ -37,7 +66,7 @@ Second argument (optional) may contain 'JSON' if you want to get returned result
 
 ```php
 <?php
-require_once('BrowserDetection.php');
+
 $Browser = new foroco\BrowserDetection();
 
 $useragent = $_SERVER['HTTP_USER_AGENT'];
@@ -61,6 +90,8 @@ Just use second argument of methods as 'JSON'
 
 // Get all possible environment data (JSON):
 $result = $Browser->getAll($useragent, 'JSON');
+
+print_r($result);
 
 // ... etc
 ?>
