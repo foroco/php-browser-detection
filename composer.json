@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Artem Murugov",
-			"email": "murugov@gmail.com",
+            "email": "murugov@gmail.com",
             "homepage": "https://github.com/foroco/",
             "role": "Developer"
         }
@@ -16,6 +16,7 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "minimum-stability": "dev",
     "autoload": {
         "classmap": [
             "src/BrowserDetection.php"
