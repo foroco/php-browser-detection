@@ -526,7 +526,7 @@ class BrowserDetection
 				$this->result_os_version = 0;
 				$this->result_os_name = 'Android';
 				$matches = $this->match_ua('/Android(?: |\-)([0-9]+\.[0-9]+)/');
-				$this->result_os_version = (float)$matches[1];
+				$this->result_os_version = !is_bool($matches) ? (float)$matches[1] : 0;
 				if (empty($this->result_os_version))
 				{
 					$matches = $this->match_ua('/Android(?: |\-)(\d+)/');
