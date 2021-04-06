@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.0
-* @last-modified March 12, 2021
+* @version 2.1
+* @last-modified April 6, 2021
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -313,7 +313,7 @@ class BrowserDetection
 		{
 			$this->result_os_name = 'Windows';
 			$matches = $this->match_ua('/Windows ([ .a-zA-Z0-9]+)[;\\)]/');
-			$version = $matches[1];
+			$version = is_array($matches) ? $matches[1] : 0;
 			if ($version === 'NT 10.0') $this->result_os_version = '10';
 			if ($version === 'NT 6.4') $this->result_os_version = '10';
 			if ($version === 'NT 6.3') $this->result_os_version = '8.1';
@@ -369,8 +369,8 @@ class BrowserDetection
 				if ($this->match_ua('Mac OS X'))
 				{
 					$matches = $this->match_ua('/Mac OS X (\d+)[_.](\d+)/');
-					$version = $matches[1];
-					$version_minor = $matches[2];
+					$version = is_array($matches) ? $matches[1] : 0;
+					$version_minor = is_array($matches) ? $matches[2] : 0;
 					
 					if ($version == 11) $version_minor = 16;
 					if (!empty($version_minor))
@@ -526,11 +526,11 @@ class BrowserDetection
 				$this->result_os_version = 0;
 				$this->result_os_name = 'Android';
 				$matches = $this->match_ua('/Android(?: |\-)([0-9]+\.[0-9]+)/');
-				$this->result_os_version = (float)$matches[1];
+				$this->result_os_version = is_array($matches) ? (float)$matches[1] : 0;
 				if (empty($this->result_os_version))
 				{
 					$matches = $this->match_ua('/Android(?: |\-)(\d+)/');
-					$this->result_os_version = (float)$matches[1];
+					$this->result_os_version = is_array($matches) ? (float)$matches[1] : 0;
 				}
 				$this->result_os_family = 'android';
 				$os_need_continue = FALSE;
@@ -543,8 +543,8 @@ class BrowserDetection
 				$this->result_os_version = 0;
 				$this->result_os_name = 'iOS';
 				$matches = $this->match_ua('/\sOS\s(\d+)[_.](\d+)/');
-				$version = $matches[1];
-				$version_minor = $matches[2];
+				$version = is_array($matches) ? $matches[1] : 0;
+				$version_minor = is_array($matches) ? $matches[2] : 0;
 				if (!empty($version)) $this->result_os_version = floatval($version.'.'.$version_minor);
 				$this->result_os_family = 'macintosh';
 				$os_need_continue = FALSE;
@@ -789,7 +789,7 @@ class BrowserDetection
 			$this->result_browser_version = 0;
 			$matches = $this->match_ua('/(Chrome|Chromium|CriOS|CrMo)\/([0-9]+)\./');
 			$this->result_browser_name = 'Chrome';
-			if ($matches[1]==='Chromium') $this->result_browser_name = 'Chromium';
+			if (!empty($matches[1]) && $matches[1]==='Chromium') $this->result_browser_name = 'Chromium';
 			if (!empty($matches[2])) $this->result_browser_version = (int)$matches[2];
 			$this->result_browser_chromium_version = $this->result_browser_version;
 			if ($this->match_ua('CriOS/')) $this->result_browser_chromium_version = 0;
@@ -855,7 +855,7 @@ class BrowserDetection
 					$this->result_browser_name = $browser_list_va[0];
 					$matches = $this->match_ua($browser_list_va[2]);
 					$matches_n = intval($browser_list_va[3]);
-					$this->result_browser_version = (float)$matches[$matches_n];
+					$this->result_browser_version = is_array($matches) ? (float)$matches[$matches_n] : 0;
 					if (!empty($this->result_browser_version))
 					{
 						$browser_need_continue = FALSE;
@@ -873,8 +873,13 @@ class BrowserDetection
 		{
 			$this->result_browser_gecko_version = 0;
 			$match = $this->match_ua('/\srv:([0-9]+\.[0-9]+)(?:[.0-9a-z]+)?(?:\;\s\w+|)\)\sGecko\/[.0-9]+\s/');
-			if ($match[1]>=5) $match[1] = intval($match[1]);
-			else $match[1] = (float)$match[1];
+			
+			if (is_array($match))
+			{
+				if ($match[1]>=5) $match[1] = intval($match[1]);
+				else $match[1] = (float)$match[1];
+			}
+			
 			if (!empty($match[1])) $this->result_browser_gecko_version = $match[1];
 			else
 			{
@@ -996,7 +1001,7 @@ class BrowserDetection
 					$this->result_browser_name = $browser_list_va[0];
 					$matches = $this->match_ua($browser_list_va[2]);
 					$matches_n = intval($browser_list_va[3]);
-					$this->result_browser_version = (float)$matches[$matches_n];
+					$this->result_browser_version = is_array($matches) ? (float)$matches[$matches_n] : 0;
 					
 					// Safari old version conversion
 					
@@ -1167,7 +1172,7 @@ class BrowserDetection
 					$this->result_browser_name = $browser_list_va[0];
 					$matches = $this->match_ua($browser_list_va[2]);
 					$matches_n = intval($browser_list_va[3]);
-					$this->result_browser_version = (float)$matches[$matches_n];
+					$this->result_browser_version = is_array($matches) ? (float)$matches[$matches_n] : 0;
 					
 					if (!empty($this->result_browser_version))
 					{

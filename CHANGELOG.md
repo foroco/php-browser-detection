@@ -2,6 +2,12 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.1] - 2021-04-06
+
+### Changed
+
+- Fixed PHP Warning Notices like 'Trying to access array offset ...' which appears since PHP version 7.4.
+
 ## [2.0] - 2021-03-12
 
 ### Added
