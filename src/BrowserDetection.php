@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.1
-* @last-modified April 6, 2021
+* @version 2.2
+* @last-modified July 5, 2021
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -245,6 +245,7 @@ class BrowserDetection
 			case 14: $result_codename = 'Mojave'; break;
 			case 15: $result_codename = 'Catalina'; break;
 			case 16: $result_codename = 'Big Sur'; break;
+			case 17: $result_codename = 'Monterey'; break;
 			default: $result_codename = 'New'; break;
 		}
 		return $result_codename;
@@ -314,6 +315,8 @@ class BrowserDetection
 			$this->result_os_name = 'Windows';
 			$matches = $this->match_ua('/Windows ([ .a-zA-Z0-9]+)[;\\)]/');
 			$version = is_array($matches) ? $matches[1] : 0;
+			if ($version === 'NT 11.0') $this->result_os_version = '11';
+			if ($version === 'NT 10.1') $this->result_os_version = '11';
 			if ($version === 'NT 10.0') $this->result_os_version = '10';
 			if ($version === 'NT 6.4') $this->result_os_version = '10';
 			if ($version === 'NT 6.3') $this->result_os_version = '8.1';
@@ -372,10 +375,13 @@ class BrowserDetection
 					$version = is_array($matches) ? $matches[1] : 0;
 					$version_minor = is_array($matches) ? $matches[2] : 0;
 					
+					// macOS version to minor version conversion (needs since Big Sur)
 					if ($version == 11) $version_minor = 16;
+					if ($version == 12) $version_minor = 17;
+					
 					if (!empty($version_minor))
 					{
-						if ($version == 10 || $version == 11) $this->result_os_version = $this->macos_codename($version_minor);
+						if ($version >= 10) $this->result_os_version = $this->macos_codename($version_minor);
 						$this->macos_version_minor = $version_minor;
 					}
 					

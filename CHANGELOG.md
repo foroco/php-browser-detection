@@ -2,6 +2,13 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.2] - 2021-07-05
+
+### Added
+
+- MacOS Monterey detection added;
+- Windows 11 detection added.
+
 ## [2.1] - 2021-04-06
 
 ### Changed

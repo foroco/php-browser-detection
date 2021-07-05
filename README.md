@@ -6,6 +6,7 @@ Uses a simple and fast algorithm to accurately detect more than 165 browser type
 For most commonly browsers parsing process took less than 0.0005 second even on low-level shared hosting.\
 In the case of rare User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
 The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
+Newest MacOS Monterey and Windows 11 User-Agents detection included.\
 Works by use only one library file and without any third-party libraries dependency.
 
 ## Requirements
