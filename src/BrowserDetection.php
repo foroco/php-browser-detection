@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.2
-* @last-modified July 5, 2021
+* @version 2.3
+* @last-modified September 3, 2021
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -213,7 +213,7 @@ class BrowserDetection
 		
 		// Match other mobile signs
 		
-		if ($this->matchi_ua('mobile|tablet') || $this->match_ua('BlackBerry|BB10;|MIDP|PlayBook|Windows Phone|Windows Mobile|Windows CE|IEMobile|Opera Mini|OPiOS|Opera Mobi|Kindle|Silk/|Bada|Tizen|Lumia|Symbian|SymbOS|(Series|PalmOS|PalmSource|Dolfin|Crosswalk|Obigo|MQQBrowser|CriOS') || $this->matchi_ua('nokia|playstation|watch')) $this->result_mobile = 1;
+		if ($this->matchi_ua('mobile|tablet') || $this->match_ua('BlackBerry|BB10;|MIDP|PlayBook|Windows Phone|Windows Mobile|Windows CE|IEMobile|Opera Mini|OPiOS|Opera Mobi|CrKey armv|Kindle|Silk/|Bada|Tizen|Lumia|Symbian|SymbOS|(Series|PalmOS|PalmSource|Dolfin|Crosswalk|Obigo|MQQBrowser|CriOS') || $this->matchi_ua('nokia|playstation|watch')) $this->result_mobile = 1;
 		return NULL;
 	}
 	
@@ -376,6 +376,7 @@ class BrowserDetection
 					$version_minor = is_array($matches) ? $matches[2] : 0;
 					
 					// macOS version to minor version conversion (needs since Big Sur)
+					if ($version == 10 && $version_minor == 0) $version_minor = 16;
 					if ($version == 11) $version_minor = 16;
 					if ($version == 12) $version_minor = 17;
 					
@@ -417,7 +418,7 @@ class BrowserDetection
 					{
 						$this->result_os_family = 'linux';
 						$this->result_os_name = $k;
-						$this->result_os_version = (float)$matches[1];
+						$this->result_os_version = is_array($matches) ? (float)$matches[1] : 0;
 						$os_need_continue = FALSE;
 						break;
 					}
@@ -431,6 +432,7 @@ class BrowserDetection
 			{
 				$other_os = array();
 				
+				$other_os[] = array('Chrome OS'=>'CrOS');
 				$other_os[] = array('Linux Mint'=>'Linux Mint');
 				$other_os[] = array('Kubuntu'=>'Kubuntu');
 				$other_os[] = array('Ubuntu'=>'Ubuntu');
@@ -451,7 +453,6 @@ class BrowserDetection
 				$other_os[] = array('Linux'=>'X11;');
 				$other_os[] = array('Linux'=>'Mozilla/5.0 (x86_64)');
 				$other_os[] = array('Linux'=>'Mozilla/5.0 (i686)');
-				$other_os[] = array('Linux'=>'CrKey armv7l');
 				$other_os[] = array('Linux'=>'U; NETFLIX');
 				$other_os[] = array('Linux'=>'GNU; ');
 				$other_os[] = array('AmigaOS'=>'AmigaOS');
@@ -584,7 +585,7 @@ class BrowserDetection
 						$this->result_os_family = 'linux';
 						if (strpos($k, 'Windows') !== FALSE) $this->result_os_family = 'windows';
 						$this->result_os_name = $k;
-						$this->result_os_version = (float)$matches[1];
+						$this->result_os_version = is_array($matches) ? (float)$matches[1] : 0;
 						$os_need_continue = FALSE;
 						
 						// J2ME/MIDP or MAUI
@@ -606,7 +607,8 @@ class BrowserDetection
 			{
 				$other_os = array();
 				
-				$other_os[] = array('Sailfish OS'=>'Sailfish');
+				$other_os[] = array('Android'=>'CrKey armv');
+				$other_os[] = array('Android'=>'SpreadTrum;');
 				$other_os[] = array('BlackBerry'=>'BlackBerry');
 				$other_os[] = array('BlackBerry'=>'BB10;');
 				$other_os[] = array('BlackBerry'=>'RIM Tablet');
@@ -617,6 +619,7 @@ class BrowserDetection
 				$other_os[] = array('KaiOS'=>'KAIOS');
 				$other_os[] = array('RemixOS'=>'Remix Mini');
 				$other_os[] = array('RemixOS'=>'RemixOS');
+				$other_os[] = array('Sailfish OS'=>'Sailfish');
 				$other_os[] = array('LiveArea'=>'PlayStation Vita');
 				$other_os[] = array('PalmOS'=>'PalmOS');
 				$other_os[] = array('PalmOS'=>'PalmSource');
@@ -631,6 +634,7 @@ class BrowserDetection
 					
 					if ($this->match_ua($v))
 					{
+						if ($k === 'Android') $this->result_os_family = 'android';
 						if ($k === 'BlackBerry') $this->result_os_family = 'blackberry';
 						if ($k === 'Symbian') $this->result_os_family = 'symbian';
 						if ($k === 'WatchOS') $this->result_os_family = 'macintosh';
@@ -659,7 +663,6 @@ class BrowserDetection
 		{
 			$other_os = array();
 			
-			$other_os[] = array('Chrome OS'=>'CrOS');
 			$other_os[] = array('WebOS'=>'hpwOS');
 			$other_os[] = array('WebOS'=>'Web0S');
 			$other_os[] = array('WebOS'=>'WebOS');
