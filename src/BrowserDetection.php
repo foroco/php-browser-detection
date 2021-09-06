@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.3
-* @last-modified September 3, 2021
+* @version 2.4
+* @last-modified September 6, 2021
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -371,14 +371,20 @@ class BrowserDetection
 				$this->result_os_name = 'MacOS';
 				if ($this->match_ua('Mac OS X'))
 				{
-					$matches = $this->match_ua('/Mac OS X (\d+)[_.](\d+)/');
-					$version = is_array($matches) ? $matches[1] : 0;
-					$version_minor = is_array($matches) ? $matches[2] : 0;
+					$matches = $this->match_ua('/Mac OS X (\d+)[_.](\d+)(?:[_.](\d+)|)/');
+					
+					$version = isset($matches[1]) ? $matches[1] : 0;
+					$version_minor = isset($matches[2]) ? $matches[2] : 0;
+					$version_revision = isset($matches[3]) ? $matches[3] : -1;
 					
 					// macOS version to minor version conversion (needs since Big Sur)
 					if ($version == 10 && $version_minor == 0) $version_minor = 16;
 					if ($version == 11) $version_minor = 16;
 					if ($version == 12) $version_minor = 17;
+					
+					// macOS with a particular major/minor/revision version structure (needs since Big Sur)
+					if ($version == 10 && $version_minor == 15 && $version_revision == 7) $version_minor = 16;
+					if ($version == 10 && $version_minor == 16 && $version_revision == 0) $version_minor = 17;
 					
 					if (!empty($version_minor))
 					{
@@ -1362,6 +1368,18 @@ class BrowserDetection
 		if ($this->result_os_name === 'MacOS' && $this->macos_version_minor >= 6)
 		{
 			if ($this->result_browser_name === 'Safari' || $this->result_browser_name === 'Safari SDK') $this->result_64bits_mode = 1;
+		}
+		
+		/*
+		---------------------------------------------------------
+		 MacOS Big Sur + Firefox version > 86 detection feature
+		---------------------------------------------------------
+		*/
+		
+		if ($this->result_os_name === 'MacOS' && $this->macos_version_minor == 15 && $this->result_browser_name === 'Firefox' && $this->result_browser_version > 86)
+		{
+			$this->result_os_version = 'Big Sur';
+			$this->result_os_title = 'MacOS '.$this->result_os_version;
 		}
 		
 		return NULL;

@@ -1,14 +1,31 @@
 <?php
 
+error_reporting(E_ALL);
+
 require_once('../src/BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
-// Testing some main and rare User-Agents
-
-$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16.4) AppleWebKit/604.5.8 (KHTML, like Gecko) Chrome/59.0.3061.40 Safari/604.5.8';
-$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36';
-$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
+// Testing some rare and unusual User-Agents
+$useragent[] = 'Mozilla/5.0 (Android; Mobile) Gecko/68.0 Firefox/68.0 QwantMobile/3.5';
+$useragent[] = 'QwantMobile/2.0 (iPad; CPU OS 11_2_6 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) QwantiOS/2.0.2b2 Mobile/15D100 Safari/604.5.6';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 9; SM-J810F Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.93 Mobile Safari/537.36 YaApp_Android/9.50 YaSearchBrowser/9.50';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.5408.400 QQBrowser/E4502ADBD6D35';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 9; Mi A1 Build/PKQ1.180917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36 Instagram 93.1.0.19.102 Android (28/9; 480dpi; 1080x1920; Xiaomi/xiaomi; Mi A1; tissot_sprout; qcom; ru_RU; 154400383)';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-A202F/A202FXXU3ASL4) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/11.1 Chrome/75.0.3770.143 Mobile Safari/537.36';
+$useragent[] = 'Opera/9.80 (Android; Opera Mini/7.6.35766/93.131; U; id) Presto/2.12.423 Version/12.16';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 10; Pixel 3 XL Build/QQ1A.200205.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.87 Mobile Safari/537.36 GSA/10.95.6.21.arm64';
+$useragent[] = 'Mozilla/5.0 (Windows; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
+$useragent[] = 'Mozilla/5.0 (Android; Mobile; rv:52.7.3) Gecko/52.7.3 Firefox/52.7.3';
 $useragent[] = 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.00';
+$useragent[] = 'Opera/9.02 (Windows; U; nl)';
+$useragent[] = 'Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36 OPR/43.0.2442.991';
+$useragent[] = 'Opera/9.80 (Linux armv7l) Presto/2.12.407 Version/12.51 , D50u-D1-UHD/V1.5.16-UHD (Vizio, D50u-D1, Wireless)';
+$useragent[] = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 8.50';
+$useragent[] = 'Opera/9.00 (Windows NT 5.1; U; en)';
+$useragent[] = 'Mozilla/5.0 (Windows NT 5.1; U; en) Opera 8.01';
+$useragent[] = 'Opera/9.80 (SpreadTrum; Opera Mini/4.4.33961/191.233; U; ru) Presto/2.12.423 Version/12.16';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36';
 $useragent[] = 'Mozilla/5.0 (Linux; Android 4.4.4; en-us; SAMSUNG SM-N910C Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/2.0 Chrome/34.0.1847.76 Mobile Safari/537.36';
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18363';
 $useragent[] = 'Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0';
@@ -32,7 +49,6 @@ $useragent[] = 'Mozilla/5.0 (Linux; Android 5.0; E2333 Build/26.1.B.3.109) Apple
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/79.0.3945.136 Safari/537.36';
 $useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0_2 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/14A456 Safari/602.1 AlohaBrowser/1.4';
 $useragent[] = 'Mozilla/5.0 (iPad; U; CPU OS 4_3_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5';
-$useragent[] = 'MEmpresas/20180706 CFNetwork/808.2.16 Darwin/17.4.0';
 $useragent[] = 'QwantMobile/2.0 (Android 7.0; Mobile; rv:57.0) Gecko/57.0 QwantBrowser/57.0';
 $useragent[] = 'Mozilla/5.0 (Mobile; rv:63.0) Gecko/63.0 Firefox/63.0';
 $useragent[] = 'BlackBerry8520/5.0.0.681 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/600';
@@ -52,15 +68,72 @@ $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/2010010
 $useragent[] = 'Mozilla/3.0 (compatible; MSIE3.00; Windows 2002)';
 $useragent[] = 'Mozilla/4.0 (compatible; MSIE 4.01; AOL 4.0; Mac_68K)';
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.9) ArtisReader/28.7.2 ArtisBrowser/28.7.2';
-$useragent[] = 'Mozilla/5.0 (Android; Mobile) Gecko/68.0 Firefox/68.0 QwantMobile/3.5';
-$useragent[] = 'QwantMobile/2.0 (iPad; CPU OS 11_2_6 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) QwantiOS/2.0.2b2 Mobile/15D100 Safari/604.5.6';
+$useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) KHTML/5.55.0 (like Gecko) Konqueror/5 KIO/5.55';
 $useragent[] = 'Qwant/2.5 (Android 8.0.0; Mobile; rv:63.0) Gecko/63.0 Firefox/59.0 QwantBrowser/63.0.1';
-$useragent[] = 'QwantMobile/2.0 (Android 7.0; Mobile; rv:57.0) Gecko/57.0 QwantBrowser/57.0';
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.9.5 Chrome/56.0.2924.122 Safari/537.36 Konqueror (WebEnginePart)';
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) konqueror/4.14.26 Safari/534.34';
 $useragent[] = 'Mozilla/5.0 (compatible; Konqueror/3.0-rc6; i686 Linux; 20020613)';
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) KHTML/5.55.0 (like Gecko) Konqueror/5 KIO/5.55';
 $useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Version/12.1.2 Safari/605.1.15 SEB/2.1.15';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2825.0 Xvast/1.0.0.8 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 ADG/11.0.2566 AOLBUILD/11.0.2566 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.4.3282.140 Elements Browser/1.1.4 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.4.0';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/B0B6B';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.0) AppleWebKit/5350 (KHTML, like Gecko) Chrome/38.0.875.0 Mobile Safari/5350';
+$useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Falkon/3.1.0 Chrome/77.0.3865.129 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:52.9) Gecko/20100101 Goanna/4.1 Firefox/52.9 Basilisk/20180427';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.9) Gecko/20100101 Goanna/4.5 Firefox/68.9 Basilisk/52.9.0';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.2882.0 Safari/537.36 AOLShield/60.0.2882.0';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.0; rv:52.0) Gecko/20100101 AOLShield/52.4.2';
+$useragent[] = 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.34 (KHTML, like Gecko) Dooble/1.40 Safari/534.34';
+$useragent[] = 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5 UCTurbo/1.6.3.900';
+$useragent[] = 'Mozilla/5.0 (Windows; U; Windows NT 5.2;. en-US) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.108 Safari/537.36 UCTurbo/1.9.6.900';
+$useragent[] = 'Mozilla/5.0 (Linux; U; Android 9; ru; SM-J530FM Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.10.0.1163 UCTurbo/1.9.3.900 Mobile Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36 OPR/60.0.3255.50962 OPRGX/60.0.3255.50962';
+$useragent[] = 'Mozilla/5.0 (Linux; U; Android 4.0.3; ru-ru; HUAWEI MediaPad Build/HuaweiMediaPad) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30 com.browser.tssomas/10.0.4-001e';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 8.0.0; SM-J737T1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.90 Mobile SFBrowser/13.0.2115.30 Mobile Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Linux; U; Android 6.0;ru_ru; Le X625 Build/HEXCNFN5801809301S) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/49.0.0.0 Mobile Safari/537.36 EUI Browser/5.8.018S';
+$useragent[] = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; en-us) AppleWebKit/528.16 (KHTML, like Gecko) Fluid/0.9.6 Safari/528.16';
+$useragent[] = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_8_0; nl-nl) AppleWebKit/601.4.4 (KHTML, like Gecko) Fluid/1.7.1 Safari/532.3+';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16; rv:85.0) Gecko/20100101 Firefox/85.0';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.16.4) AppleWebKit/604.5.8 (KHTML, like Gecko) Chrome/59.0.3061.40 Safari/604.5.8';
+$useragent[] = 'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/538.1 (KHTML, like Gecko) Google Earth Pro/7.3.2.5776 Safari/538.1';
+$useragent[] = 'Mozilla/5.0 (Windows; N; Windows NT 6.1; de-DE) AppleWebKit/532.4 (KHTML, like Gecko) Google Earth/7.1.5.1557 Safari/532.4';
+$useragent[] = 'iCabMobile/9.14.7 CFNetwork/1121.2.2 Darwin/19.2.0';
+$useragent[] = 'Mozilla/5.0 (i686) AppleWebKit/537.6+ (KHTML, like Gecko) WebKitGTK+/1.10.2 luakit/039e319';
+$useragent[] = 'Mozilla/5.0 (x86_64) AppleWebKit/538.15+ (KHTML, like Gecko) WebKitGTK+/2.4.9 luakit';
+$useragent[] = 'Word/16.15.18070902 CFNetwork/901.1 Darwin/17.6.0 (x86_64)';
+$useragent[] = 'Safari/10600.1.25 CFNetwork/720.0.7 Darwin/14.0.0 (x86_64)';
+$useragent[] = 'Safari/9537.86.7.8 CFNetwork/673.6 Darwin/13.4.0 (x86_64) (MacBookAir6%2C1)';
+$useragent[] = 'MobileSafari/6533.18.5 CFNetwork/485.12.7 Darwin/10.4.0';
+$useragent[] = '1Password%207/70007000 CFNetwork/902.1 Darwin/17.7.0 (x86_64)';
+$useragent[] = 'ActionExtension/108.2.2 CFNetwork/902.2 Darwin/17.7.0';
+$useragent[] = 'MEmpresas/20180706 CFNetwork/808.2.16 Darwin/17.4.0';
+$useragent[] = 'AdGuard%20Pro/165 CFNetwork/976 Darwin/18.2.0';
+$useragent[] = 'CFNetworkAgent (unknown version) CFNetwork/1121.2.2 Darwin/19.2.0';
+$useragent[] = 'Canary-iOS/191 CFNetwork/893.14.2 Darwin/17.3.0';
+$useragent[] = 'Finish Line/2.5.2 CFNetwork/897.15 Darwin/17.5.0';
+$useragent[] = 'NET.mede/1 CFNetwork/758.5.3 Darwin/15.6.0';
+$useragent[] = 'Safari/6531.9 CFNetwork/454.4 Darwin/10.0.0 (i386) (MacBook4%2C1)';
+$useragent[] = 'SafariSafeBrowsing/603.3.8 CFNetwork/811.5.4 Darwin/16.7.0';
+$useragent[] = 'SafariViewService/1.0 CFNetwork/974.2 Darwin/18.0.0';
+$useragent[] = 'Viber/8.1.1.158 CFNetwork/811.5.4 Darwin/16.7.0';
+$useragent[] = 'com.apple.Notes.SharingExtension/555.10.42 CFNetwork/760.7 Darwin/15.6.0 (x86_64)';
+$useragent[] = 'com.apple.Safari.SearchHelper/10600.8.3 CFNetwork/720.5.7 Darwin/14.5.0 (x86_64)';
+$useragent[] = 'com.apple.WebKit.Networking/10603.3.8 CFNetwork/720.5.7 Darwin/14.5.0 (x86_64)';
+$useragent[] = 'com.apple.mobilenotes.SharingExtension/1124.10 CFNetwork/808.1.4 Darwin/16.1.0';
+$useragent[] = 'dataaccessd (unknown version) CFNetwork/811.5.4 Darwin/16.7.0';
+$useragent[] = 'Mozilla/5.0 (Android; Mobile; rv:52.7.3) Gecko/52.7.3 Firefox/52.7.3';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36 Edg/86.0.622.69';
+$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 12_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows NT 11.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36';
 
 $time_start = microtime(true);
 

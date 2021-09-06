@@ -2,6 +2,14 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.4] - 2021-09-06
+
+### Changed
+
+- MacOS Monterey detection improvements;
+- MacOS Big Sur detection improvements: MacOS User-Agent with '10_15_7' version matching now detectable as MacOS Big Sur instead MacOS Catalina;
+- New MacOS Big Sur detection feature. Since Firefox version 87 on MacOS with '10.15' version matching, this MacOS version will be considered as MacOS Big Sur (see reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent/Firefox#macintosh).
+
 ## [2.3] - 2021-09-03
 
 ### Added
