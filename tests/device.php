@@ -47,7 +47,8 @@ $useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_3 like Mac OS X) AppleWe
 $useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0 Cyberfox/52.7.0';
 $useragent[] = 'Mozilla/3.0 (compatible; MSIE3.00; Windows 2002)';
 $useragent[] = 'Mozilla/4.0 (compatible; MSIE 4.01; AOL 4.0; Mac_68K)';
-
+$useragent[] = 'Mozilla/5.0 (Linux; Android 11; M2012K11G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Mobile Safari/537.36';
+	
 $time_start = microtime(true);
 
 foreach ($useragent as $u)
