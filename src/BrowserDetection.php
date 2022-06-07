@@ -1134,6 +1134,8 @@ class BrowserDetection
 			$browser_list[] = array('Mercury', 'Mercury/', '/Mercury\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Samsung Browser', '; SAMSUNG S|; SAMSUNG G', '/\;\sSAMSUNG\s(S|G)+.*\sBuild\/.*\)\sAppleWebKit\/.*Version\/([0-9]+\.[0-9]+)\sChrome\/[.0-9]+.*\sSafari\/[.0-9]+$/', '2', 'SamsungBrowser');
 			$browser_list[] = array('Documents App', 'RDDocuments/', '/RDDocuments\/([0-9]+\.[0-9]+)/', '1', '');
+            $browser_list[] = array('WeChat App', 'MicroMessenger/', '/MicroMessenger\/([0-9]+\.[0-9]+\.[0-9]+)/', '1', '');
+			$browser_list[] = array('Alipay App', 'AlipayClient/', '/AlipayClient\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Opera Coast', 'Coast/', '/Coast\/([0-9]+)/', '1', '');
 			$browser_list[] = array('Android Browser', '/Android.*Version\/[.0-9]+\s(?:Mobile\s)?Safari(|\/[.0-9]+\sCyanogenMod.*)+$/', '/Android.*Version\/([0-9]+\.[0-9]+)/', '1', 'Chrome/');
 			$browser_list[] = array('Playstation Browser', '/(PlayStation\s|PLAYSTATION\s)/', '/(PlayStation\s|PLAYSTATION\s)/', '1', '');
