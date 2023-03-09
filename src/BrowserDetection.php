@@ -1291,7 +1291,7 @@ class BrowserDetection
 		
 		// Check and correct browser version anomaly
 		
-		if (intval($this->result_browser_version)>110 && !$this->match_ua('FBAV/|FBSV/|GSA/|Instagram')) $this->result_browser_version = 0;
+		if (intval($this->result_browser_version)>1100 && !$this->match_ua('FBAV/|FBSV/|GSA/|Instagram')) $this->result_browser_version = 0;
 		
 		// Set Browser title
 		
