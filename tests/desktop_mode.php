@@ -26,7 +26,6 @@ $useragent[] = 'Mozilla/5.0 (Linux; Android 7.1.1; ZTE A2017G Build/NMF26V) Appl
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.128 Safari/537.36 (Ecosia android@69.0.3497.128)';
 $useragent[] = 'Mozilla/5.0 (Linux; Android 7.1.1; ZTE A2017G Build/NMF26V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.138 Mobile Safari/537.36 PHX/4.9';
 $useragent[] = 'Mozilla/5.0 (Android; Mobile) Gecko/68.0 Firefox/68.0 QwantMobile/3.5';
-$useragent[] = 'Mozilla/5.0 (Android; Mobile) Gecko/68.0 Firefox/68.0 QwantMobile/3.5';
 $useragent[] = 'Mozilla/5.0 (Linux; Android 7.1.1) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.138 Mobile Safari/537.36 webexplorer/4';
 $useragent[] = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/81.0.4044.138 Safari/537.36 webexplorer/4';
 $useragent[] = 'Mozilla/5.0 (Linux; Android 7.1.1; ZTE A2017G Build/NMF26V) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.111 NoxBrowser/2.0.0 Mobile Safari/537.36';
@@ -39,7 +38,6 @@ $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like 
 $useragent[] = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36 Atom/1.0.3';
 $useragent[] = 'Mozilla/5.0 (Windows NT 6.2; ARM; Trident/7.0; Touch; rv:11.0; WPDesktop; Virtual) like Gecko';
 $useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12 (000154)';
-$useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.1.3 Safari/600.7.12';
 
 $time_start = microtime(true);
 

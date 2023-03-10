@@ -2,11 +2,11 @@
 
 A PHP library to detect browser, OS, platform and device type by User-Agent parsing.\
 This library focused on high performance and low memory usage HTTP client parsing.\
-Uses a simple and fast algorithm to accurately detect more than 165 browser types and over 60 OS types.\
+Uses a simple and fast algorithm to accurately detect about ~ 200 browsers/apps and over 60 OS.\
 For most commonly browsers parsing process took less than 0.0005 second even on low-level shared hosting.\
 In the case of rare User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
 The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
-Newest MacOS Monterey and Windows 11 User-Agents detection included.\
+Newest MacOS Monterey, MacOS Ventura and Windows 11 User-Agents detection included.\
 Works by use only one library file and without any third-party libraries dependency.
 
 ## Requirements
@@ -420,7 +420,7 @@ getDevice: ~ 70000 rps
 
 The MIT License (MIT)
 
-Copyright (c) 2020-2021 Artem Murugov
+Copyright (c) 2020-2023 Artem Murugov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

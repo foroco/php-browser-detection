@@ -2,6 +2,25 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.5] - 2023-03-10
+
+### Added
+
+- MacOS Ventura detection added;
+- About ~ 20 browsers and apps detection added;
+- Added 30+ TV devices detection;
+- Darwin -> MacOS/iOS versions corresponding conversion database has been updated;
+
+### Changed
+
+- Safari and Safari Mobile browsers detection improved.
+
+### Fixed
+
+- Fixed a bug with the upper browser version limit;
+- Fixed a bug with Darwin -> MacOS/iOS versions corresponding conversion;
+- Fixed a webview detection bug when using the getBrowser() method.
+
 ## [2.4] - 2021-09-06
 
 ### Changed
