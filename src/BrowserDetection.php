@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.5
-* @last-modified March 10, 2023
+* @version 2.6
+* @last-modified March 12, 2023
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -343,12 +343,18 @@ class BrowserDetection
 			if (empty($this->result_os_version))
 			{
 				if ($this->match_ua('/Win16/')) $this->result_os_version = '3.1';
-				if ($this->match_ua('/(Windows 95)|(Win95)|(Windows_95)/')) $this->result_os_version = '95';
-				if ($this->match_ua('/(Windows 98)|(Win98)/')) $this->result_os_version = '98';
-				if ($this->match_ua('/(Windows 2000)/')) $this->result_os_version = '2000';
-				if ($this->match_ua('/(Win NT 5\.0)/')) $this->result_os_version = '2000';
-				if ($this->match_ua('/(Windows XP)/')) $this->result_os_version = 'XP';
+				if ($this->match_ua('/(Windows\s95|Win95|Windows_95)/')) $this->result_os_version = '95';
+				if ($this->match_ua('/(Windows\s98|Win98)/')) $this->result_os_version = '98';
+				if ($this->match_ua('/Windows\s2000/')) $this->result_os_version = '2000';
+				if ($this->match_ua('/Win\sNT\s5\.0/')) $this->result_os_version = '2000';
+				if ($this->match_ua('/Windows\sXP/')) $this->result_os_version = 'XP';
 				if ($this->match_ua('/WinNT4\.0/')) $this->result_os_version = 'NT 4.0';
+				if ($this->match_ua('/Windows\sVista/')) $this->result_os_version = 'Vista';
+				if ($this->match_ua('/Windows\s7/')) $this->result_os_version = '7';
+				if ($this->match_ua('/Windows\s8/')) $this->result_os_version = '8';
+				if ($this->match_ua('/Windows\s8.1/')) $this->result_os_version = '8.1';
+				if ($this->match_ua('/Windows\s10/')) $this->result_os_version = '10';
+				if ($this->match_ua('/Windows\s11/')) $this->result_os_version = '11';
 			}
 			if (!empty($this->result_os_version)) $this->result_os_title = 'Windows '.$this->result_os_version;
 			else $this->result_os_title = 'Windows (unknown version)';
@@ -402,7 +408,7 @@ class BrowserDetection
 				}
 				else
 				{
-					$this->result_os_title = 'MacOS (classic old)';
+					$this->result_os_title = 'MacOS';
 				}
 				$this->result_os_family = 'macintosh';
 				$os_need_continue = FALSE;
@@ -834,7 +840,7 @@ class BrowserDetection
 			if (!empty($matches[2])) $this->result_browser_version = (int)$matches[2];
 			$this->result_browser_chromium_version = $this->result_browser_version;
 			if ($this->match_ua('CriOS/')) $this->result_browser_chromium_version = 0;
-			if ($this->match_ua('/Gecko\)\s(Chrome|CrMo)\/(\d+\.\d+\.\d+\.\d+)\s(?:Mobile)?(?:\/[.0-9A-Za-z]+\s|\s)?Safari\/[.0-9]+$/') && !$this->match_ua('SalamWeb') && !$this->match_ua('Valve Steam')) $this->result_browser_chrome_original = 1;
+			if ($this->match_ua('/Gecko\)\s(Chrome|CrMo)\/(\d+\.\d+\.\d+\.\d+)\s(?:Mobile)?(?:\/[.0-9A-Za-z]+\s|\s)?Safari\/[.0-9]+$/') && !$this->match_ua('SalamWeb') && !$this->match_ua(' Valve ')) $this->result_browser_chrome_original = 1;
 		}
 		
 		// Firefox
@@ -857,7 +863,7 @@ class BrowserDetection
 			$browser_list[] = array('Opera', ' OPR/', '/OPR\/(\d+)/', '1', 'Opera Mini|OPiOS|OPT/|OPRGX/|AlohaBrowser');
 			$browser_list[] = array('Opera', 'Opera', '/Opera.*Version\/([0-9]+\.[0-9]+)/', '1', 'Opera Mini|OPiOS|OPT/|InettvBrowser/');
 			$browser_list[] = array('Opera', 'Opera', '/Opera(\s|\/)([0-9]+\.[0-9]+)/', '2', 'Opera Mini|OPiOS|OPT/|InettvBrowser/');
-			$browser_list[] = array('UC Browser', 'UBrowser|UCBrowser|UCMini', '/(UBrowser|UCBrowser|UCMini)\/([0-9]+\.[0-9]+)/', '2', 'UCTurbo');
+			$browser_list[] = array('UC Browser', 'UBrowser|UCBrowser|UCMini', '/(UBrowser|UCBrowser|UCMini)\/([0-9]+\.[0-9]+)/', '2', 'UCTurbo|AliApp');
 			$browser_list[] = array('UC Browser Turbo', 'UCTurbo/', '/UCTurbo\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Puffin', 'Puffin/', '/Puffin\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Vivaldi', 'Vivaldi/', '/Vivaldi\/([0-9]+\.[0-9]+)/', '1', '');
@@ -963,7 +969,7 @@ class BrowserDetection
 			
 			// Chromium based browsers
 			
-			$browser_list[] = array('Avast Secure Browser', 'Avast/', '/Avast\/([0-9]+)/', '1', '');
+			$browser_list[] = array('Avast Browser', 'Avast/', '/Avast\/([0-9]+)/', '1', '');
 			$browser_list[] = array('AVG Secure Browser', 'AVG/', '/AVG\/([0-9]+)/', '1', '');
 			$browser_list[] = array('CCleaner Browser', 'CCleaner/', '/CCleaner\/([0-9]+)/', '1', '');
 			$browser_list[] = array('Comodo Dragon', 'Dragon/', '/Dragon\/([0-9]+)/', '1', 'IceDragon');
@@ -1025,8 +1031,8 @@ class BrowserDetection
 			$browser_list[] = array('Fluid', 'Fluid/', '/Fluid\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Arora', 'Arora/', '/Arora\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Artis Browser', 'ArtisBrowser/', '/ArtisBrowser\/([0-9]+\.[0-9]+)/', '1', '');
-			$browser_list[] = array('Valve Steam Client', 'Valve Steam Client', '/Valve\sSteam\sClient/', '1', '');
-			$browser_list[] = array('Valve Steam Game Overlay', 'Valve Steam GameOverlay', '/Valve\sSteam\sGameOverlay/', '1', '');
+			$browser_list[] = array('Steam Client', ' Valve ', '/Valve\s(|Steam\s)Client/', '1', 'Tenfoot');
+			$browser_list[] = array('Steam Overlay', ' Valve ', '/Valve\sSteam\sGameOverlay/', '1', 'Tenfoot|Client/');
 			$browser_list[] = array('Rekonq', ' rekonq', '/rekonq\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Odyssey Web Browser', 'Odyssey Web Browser', '/OWB\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Safari SDK', '/^Safari\/[.0-9]+\sCFNetwork\/[.0-9]+\sDarwin\/[.0-9]+/', '/Safari\//', '1', '');
@@ -1035,6 +1041,7 @@ class BrowserDetection
 			$browser_list[] = array('Firefox', 'GranParadiso/', '/GranParadiso\/([0-9]+)/', '1', '');
 			$browser_list[] = array('Firefox', 'Shiretoko/', '/Shiretoko\/([0-9]+)/', '1', '');
 			$browser_list[] = array('Firefox', 'Namoroka/', '/Namoroka\/([0-9]+)/', '1', '');
+			$browser_list[] = array('iTunes App', 'iTunes/', '/iTunes\/([0-9]+\.[0-9]+)/', '1', '');
 			
 			foreach($browser_list as $browser_list_va)
 			{
@@ -1096,8 +1103,8 @@ class BrowserDetection
 		{
 			// Mobile browsers with detectable versions
 			
-			$browser_list[] = array('Safari Mobile', '/(iPhone|iphone|iPad|iPod).*AppleWebKit\/[.0-9]+\s\(KHTML,\slike\sGecko\)\s.*Version\/[.0-9]+\sMobile\//', '/Version\/([0-9]+\.[0-9]+)(|\.[0-9]+)\sMobile\//', '1', 'RDDocuments|AlohaBrowser|DuckDuckGo|MiuiBrowser|Snapchat|NAVER(inapp;');
-			$browser_list[] = array('Safari Mobile', '/(Intel\sMac\sOS\sX).*AppleWebKit\/.*Version\/[.0-9]+\s(?:|Mobile\/\w+\s)Safari\/[.0-9A-Za-z]+(|\/[0-9]+|\s\(.*\))+$/', '/Version\/([0-9]+\.[0-9]+)(|\.[0-9]+)/', '1', 'RDDocuments|AlohaBrowser|DuckDuckGo|MiuiBrowser|Snapchat|NAVER(inapp;');
+			$browser_list[] = array('Safari Mobile', '/(iPhone|iphone|iPad|iPod).*AppleWebKit\/[.0-9]+\s\(KHTML,\slike\sGecko\)\s.*Version\/[.0-9]+\sMobile\//', '/Version\/([0-9]+\.[0-9]+)(|\.[0-9]+)\sMobile\//', '1', 'RDDocuments|AlohaBrowser|DuckDuckGo|MiuiBrowser|Snapchat|NAVER(inapp;|1Password');
+			$browser_list[] = array('Safari Mobile', '/(Intel\sMac\sOS\sX).*AppleWebKit\/.*Version\/[.0-9]+\s(?:|Mobile\/\w+\s)Safari\/[.0-9A-Za-z]+(|\/[0-9]+|\s\(.*\))+$/', '/Version\/([0-9]+\.[0-9]+)(|\.[0-9]+)/', '1', 'RDDocuments|AlohaBrowser|DuckDuckGo|MiuiBrowser|Snapchat|NAVER(inapp;|1Password');
 			$browser_list[] = array('Android Browser', '/Android.*Version\/[.0-9]+\s(?:Mobile\s)?Safari\/[.0-9]+(|\-[0-9]+)$/', '/Android.*Version\/([0-9]+\.[0-9]+)/', '1', 'Chrome/');
 			$browser_list[] = array('Android Browser', 'Dalvik/', '/Dalvik\/([.0-9]+)\s\(Linux;\sU;\sAndroid\s/', '2', 'Chrome/');
 			$browser_list[] = array('Samsung Browser', 'SamsungBrowser', '/SamsungBrowser\/([0-9]+\.[0-9]+)/', '1', 'CrossApp');
@@ -1109,11 +1116,12 @@ class BrowserDetection
 			$browser_list[] = array('DuckDuckGo', 'DuckDuckGo/', '/DuckDuckGo\/([0-9]+)/', '1', '');
 			$browser_list[] = array('MIUI Browser', 'MiuiBrowser/', '/MiuiBrowser\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Mint Browser', 'Mint Browser/', '/Mint\sBrowser\/([0-9]+\.[0-9]+)/', '1', '');
-			$browser_list[] = array('Avast Browser Mobile', 'AvastSecureBrowser/', '/AvastSecureBrowser\/([0-9]+\.[0-9]+)/', '1', '');
+			$browser_list[] = array('Avast Browser', 'AvastSecureBrowser/', '/AvastSecureBrowser\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Google App', '/(iPhone|iphone|iPad|iPod).*\)\sGSA\/([0-9]+)/', '/(iPhone|iphone|iPad|iPod).*\)\sGSA\/([0-9]+)/', '2', '');
 			$browser_list[] = array('Google App', '/\sGSA\//', '/\sGSA\/([0-9]+)/', '1', '');
-			$browser_list[] = array('Facebook App', 'FBAV/|FBSV/', '/FBAV\/([0-9]+)\./', '1', '');
+			$browser_list[] = array('Facebook App', 'FBAV/|FBSV/', '/(FBAV|FBSV)\/([0-9]+)\./', '2', 'FBAN/Messenger|FB_IAB/MESSENGER');
 			$browser_list[] = array('Instagram App', 'Instagram', '/Instagram\s([0-9]+)\./', '1', '');
+			$browser_list[] = array('Facebook Messenger', 'FBAN/Messenger|FB_IAB/MESSENGER', '/(FBAV|FBSV)\/([0-9]+)\./', '2', '');
 			$browser_list[] = array('Snapchat', 'Snapchat', '/\sSnapchat\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('WhatsApp', 'WhatsApp', '/WhatsApp\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Viber', 'Viber/', '/Viber\/([0-9]+\.[0-9]+)/', '1', '');
@@ -1134,7 +1142,7 @@ class BrowserDetection
 			$browser_list[] = array('Surf Browser', 'SurfBrowser/', '/SurfBrowser\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Phoenix Browser', 'PHX/', '/PHX\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('CM Mobile', 'ACHEETAHI', '/Chrome\/([0-9]+)/', '1', '');
-			$browser_list[] = array('Bing Search App', 'BingWeb/', '/BingWeb\/([0-9]+\.[0-9]+)/', '1', '');
+			$browser_list[] = array('Bing App', ' BingWeb', '/BingWeb\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Firefox Klar', 'Klar/', '/Klar\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Super Fast Browser', 'SFBrowser|tssomas', '/(SFBrowser|tssomas)\/([0-9]+\.[0-9]+)/', '2', '');
 			$browser_list[] = array('Tenta Browser', 'Tenta/', '/Tenta\/([0-9]+\.[0-9]+)/', '1', '');
@@ -1180,6 +1188,11 @@ class BrowserDetection
 			$browser_list[] = array('Line App', ' Line/', '/\sLine\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('QQ App', ' QQ/', '/\sQQ\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('GNews App', ' GNews ', '/\sGNews\s.*\/([0-9]+\.[0-9]+)/', '1', '');
+			$browser_list[] = array('1Password App', '1Password', '/\s1Password\/([0-9]+\.[0-9]+)/', '1', '');
+			$browser_list[] = array('Pinterest App', 'Pinterest', '/Pinterest/', '1', '');
+			$browser_list[] = array('Twitter App', ' Twitter', '/Twitter/', '1', '');
+			$browser_list[] = array('Ali App', ' AliApp', '/\sAliApp/', '1', '');
+			$browser_list[] = array('Alipay', 'AlipayClient', '/AlipayClient\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Samsung CrossApp', 'CrossApp/', '/CrossApp\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Diigo Browser', 'DiigoBrowser', '/DiigoBrowser/', '1', '');
 			
@@ -1285,6 +1298,7 @@ class BrowserDetection
 				$matches[1] = str_replace('com.apple.Notes.', '', $matches[1]);
 				$matches[1] = str_replace('com.apple.mobilenotes.', '', $matches[1]);
 				$this->result_browser_name = $matches[1].' App';
+				if ($this->result_browser_name === 'Browser App') $this->result_browser_name = 'Darwin Browser';
 				$darwin_app = TRUE;
 			}
 		}
@@ -1305,20 +1319,24 @@ class BrowserDetection
 				if ($this->result_browser_chrome_original == 0 && $this->result_browser_chromium_version != 0 && $this->match_ua('/like\sGecko\)\sVersion\/[.0-9]+\sChrome\/[.0-9]+\s/')) $this->result_browser_android_webview = 1;
 			}
 			
-			// Safari WebView
+			// WebKit WebView
 			
 			if ($this->result_ios)
 			{
-				$safari_webview = FALSE;
+				$webkit_webview = FALSE;
 				
-				if ($this->result_browser_name === 'unknown' && !$this->match_ua('Safari|iCabMobile') && $this->match_ua('/\s\((iPhone|iphone|iPad|iPod);.*\)\sAppleWebKit\/[.0-9]+\s\(KHTML\,\slike Gecko\)\sMobile\//')) $safari_webview = TRUE;
-				if ($this->result_browser_name === 'unknown' && $this->match_ua('MobileSafari/') && $this->match_ua('CFNetwork/')) $safari_webview = TRUE;
+				if (!$this->match_ua('CriOS|FxiOS|OPiOS') && $this->match_ua('/\s\((iPhone|iphone|iPad|iPod);.*\)\sAppleWebKit\/[.0-9]+\s\(KHTML\,\slike Gecko\)\s(?!Version).*Mobile\/([0-9A-Z]+)\s/')) $webkit_webview = TRUE;
+				if ($this->result_browser_name === 'unknown' && $this->match_ua('MobileSafari/') && $this->match_ua('CFNetwork/')) $webkit_webview = TRUE;
 				
-				if ($safari_webview)
+				if ($webkit_webview)
 				{
 					$this->result_browser_ios_webview = 1;
-					$this->result_browser_version = 0;
-					$this->result_browser_name = 'Mobile Safari WebView';
+
+					if ($this->result_browser_name === 'unknown')
+					{
+						$this->result_browser_name = 'WebKit WebView';
+						$this->result_browser_version = 0;
+					}
 				}
 			}
 		}
@@ -1336,7 +1354,7 @@ class BrowserDetection
 		
 		// Check and correct browser version anomaly
 		
-		if (intval($this->result_browser_version)>150 && !$this->match_ua('FBAV/|FBSV/|GSA/|Instagram')) $this->result_browser_version = 0;
+		if (intval($this->result_browser_version)>200 && !$this->match_ua('FBAV/|FBSV/|GSA/|Instagram')) $this->result_browser_version = 0;
 		
 		// Set Browser title
 		
@@ -1347,16 +1365,22 @@ class BrowserDetection
 			
 			$browsers_without_versions = array();
 			$browsers_without_versions[] = 'Android Browser';
-			$browsers_without_versions[] = 'Mobile Safari WebView';
+			$browsers_without_versions[] = 'WebKit WebView';
 			$browsers_without_versions[] = 'Safari SDK';
 			$browsers_without_versions[] = 'Playstation Browser';
 			$browsers_without_versions[] = 'OmniWeb';
-			$browsers_without_versions[] = 'Valve Steam Client';
-			$browsers_without_versions[] = 'Valve Steam Game Overlay';
+			$browsers_without_versions[] = 'Steam Client';
+			$browsers_without_versions[] = 'Steam Overlay';
 			$browsers_without_versions[] = 'Maple';
 			$browsers_without_versions[] = 'Espial';
 			$browsers_without_versions[] = 'Diigo Browser';
 			$browsers_without_versions[] = 'IceWeasel';
+			$browsers_without_versions[] = 'Facebook App';
+			$browsers_without_versions[] = 'Twitter App';
+			$browsers_without_versions[] = 'Bing App';
+			$browsers_without_versions[] = 'Pinterest App';
+			$browsers_without_versions[] = 'Ali App';
+			$browsers_without_versions[] = 'Alipay App';
 			
 			if (in_array($this->result_browser_name, $browsers_without_versions) || isset($darwin_app))
 			{
@@ -1368,6 +1392,9 @@ class BrowserDetection
 		
 		if (strpos($this->result_browser_name, 'unknown') !== FALSE) $this->result_browser_title = 'unknown';
 		if ($this->result_browser_version == NULL) $this->result_browser_version = 0;
+
+		// EdgeHTML browser should not be detected as a Chromium engine
+		if ($this->result_browser_name === 'Edge' && $this->result_browser_version >= 12 && $this->result_browser_version <= 18) $this->result_browser_chromium_version = 0;
 		
 		if ($this->get_mode === 'browser') return NULL;
 		
@@ -1395,7 +1422,7 @@ class BrowserDetection
 		
 		// MediaPlayer
 		
-		if ($this->match_ua('iPod|iTunes|AlexaMediaPlayer|AppleCoreMedia')) $this->result_device_type = 'mediaplayer';
+		if ($this->match_ua('iPod|AlexaMediaPlayer|AppleCoreMedia')) $this->result_device_type = 'mediaplayer';
 		
 		// Car
 		

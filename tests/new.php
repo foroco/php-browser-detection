@@ -7,6 +7,54 @@ $Browser = new foroco\BrowserDetection();
 
 // Testing some new User-Agents
 
+// New
+
+// 2.6
+
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362';
+$useragent[] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.116 Safari/537.36 Edg/80.0.361.61';
+
+$useragent[] = 'Mozilla/5.0 (iPad; CPU OS 13_1_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/MessengerForiOS;FBAV/243.0.0.43.118;FBBV/185083733;FBDV/iPad5,3;FBMD/iPad;FBSN/iOS;FBSV/13.1.3;FBSS/2;FBID/tablet;FBLC/es_ES;FBOP/5]';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 10; SM-G973F Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 [FB_IAB/MESSENGER;FBAV/359.0.0.30.118;;]';
+
+$useragent[] = 'Mozilla/5.0 (Linux; Android 13; SM-A127F Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/104.0.5112.97 Mobile Safari/537.36 TwitterAndroid';
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/19F77 Twitter for iPhone/9.14';
+
+$useragent[] = 'Mozilla/5.0 (Windows; U; Windows NT 10.0; en-US; Valve Steam GameOverlay/1641596129; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows; U; Windows NT 10.0; en-US; Valve Client/1660960119; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36';
+$useragent[] = 'Mozilla/5.0 (Windows; U; Windows NT 10.0; en-US; Valve Steam Client/default/1654574690; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36';
+
+$useragent[] = 'Mozilla/5.0 (Linux; U; Android 10; zh-CN; M2006C3LG Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 UWS/3.22.1.227 Mobile Safari/537.36 AliApp(LA/7.12.0) UCBS/2.11.1.1 TTID/600000@lazada_android_7.12.0 WindVane/8.5.0 720X1449';
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X; zh-CN) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/19G82 UCBrowser/15.0.4.1842 Mobile AliApp(TUnionSDK/0.1.20.4)';
+
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/19F77 Ariver/1.1.0 AliApp(AP/10.2.65.8000) Nebula WK RVKType(1) AlipayDefined(nt:WIFI,ws:375|748|3.0) AlipayClient/10.2.65.8000 Language/zh-Hans Region/CN NebulaX/1.0.0';
+$useragent[] = 'Mozilla/5.0 (Linux; U; Android 12; zh-CN; KB2000 Build/RKQ1.211119.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 UWS/3.22.2.43 Mobile Safari/537.36 UCBS/3.22.2.43_220223200704 NebulaSDK/1.8.100112 Nebula AlipayDefined(nt:WIFI,ws:360|0|3.0) AliApp(AP/10.3.0.8000) AlipayClient/10.3.0.8000 Language/zh-Hans useStatusBar/true isConcaveScreen/true Region/CNAriver/1.0.0';
+
+$useragent[] = 'Bing/390206001 CFNetwork/1220.1 Darwin/20.3.0';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 10; NEN-LX1 Build/HUAWEINEN-LX1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36 BingWeb/11.0.28178704';
+$useragent[] = 'Mozilla/5.0 (iPad; CPU OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Safari/601.1 bingipadclient BingWeb';
+
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [Pinterest/iOS]';
+$useragent[] = 'Mozilla/5.0 (Linux; Android 11; SM-A202F Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36 [Pinterest/Android]';
+$useragent[] = 'Pinterest for Android/10.28.2 (lisbon; 11)';
+
+$useragent[] = 'Mozilla/5.0 (iPhone; CPU OS 15_5 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) 1Password/7.9.6 (like Version/15.5 Mobile/19F77 Safari/600.1.4)';
+
+$useragent[] = 'Browser/97 CFNetwork/1327.0.4 Darwin/21.2.0';
+
+$useragent[] = 'iTunes/4.7.1 (Linux; N; Linux; x86_64-linux; IT; utf8) SqueezeCenter, Squeezebox Server, Logitech Media Server/8.3.1/git353c504';
+$useragent[] = 'iTunes/10.5.1 (Windows; Microsoft Windows Vista Home Premium Edition (Build 6000)) AppleWebKit/534.51.22';
+$useragent[] = 'iTunes/4.7.1 (Windows; N; Windows 10; 8664; FR; cp1252) SqueezeCenter, Squeezebox Server, Logitech Media Server/8.4.0/1678489609';
+$useragent[] = 'iTunes/12.9 (Windows; Microsoft Windows 10 x64 Enterprise Edition (Build 19042); x64) AppleWebKit/7606.1032.1000.6';
+$useragent[] = 'iTunes/9.0.2 (Macintosh; Intel Mac OS X 10.11.6) AppleWebKit/1601.7.8';
+$useragent[] = 'iTunes/11.0.3 (Macintosh; OS X 10.8.5) AppleWebKit/536.30.1';
+$useragent[] = 'iTunes/4.7.1 (Linux; N; QLMS 2.X (QNAP TurboStation) [Debian 9 stretch]; x86_64-linux; SV; utf8) SqueezeCenter, Squeezebox Server, Logitech Media Server/8.3.2/1677516824';
+$useragent[] = 'iTunes/12.10.9 (Windows; Microsoft Windows 7 Service Pack 1 Home Premium Edition (Build 7601)) AppleWebKit/7609.3005.1003.3';
+$useragent[] = 'iTunes/4.7.1 (Linux; N; Debian; armv7l-linux; DA; utf8) SqueezeCenter, Squeezebox Server, Logitech Media Server/8.3.0/1667251155';
+
+// 2.5
+
 $useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 QQ/8.8.50.617 V1_IPH_SQ_8.8.50_1_APP_A Pixel/1080 MiniAppEnable SimpleUISwitch/0 StudyMode/0 CurrentMode/0 CurrentFontScale/1.353000 QQTheme/1000 Core/WKWebView Device/Apple(iPhone 7Plus) NetType/4G QBWebViewType/1 WKType/1';
 $useragent[] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 QQ/8.6.5.638 V1_IPH_SQ_8.6.5_1_APP_A Pixel/1080 MiniAppEnable SimpleUISwitch/0 StudyMode/0 QQTheme/1000 Core/WKWebView Device/Apple(iPhone 8Plus) NetType/WIFI QBWebViewType/1 WKType/1';
 $useragent[] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.21 Safari/537.36 MMS/1.0.2531.0';

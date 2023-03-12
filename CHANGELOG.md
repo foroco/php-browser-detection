@@ -2,6 +2,21 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.6] - 2023-03-12
+
+### Added
+
+- About ~ 10 browsers/apps detection added;
+- Added detection of rare Windows OS User-Agents.
+
+### Changed
+
+- iOS WebKit WebView detection improved.
+
+### Fixed
+
+- EdgeHTML browser engine (Edge Browser from 12 to 18 versions) no longer detects as Chromium engine based
+
 ## [2.5] - 2023-03-10
 
 ### Added
