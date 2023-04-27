@@ -2,6 +2,12 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.7] - 2023-04-27
+
+### Fixed
+
+- Gecko browser engine issue fixed for Gecko versions > 109 for correct Gecko version detection (see issue: https://bugzilla.mozilla.org/show_bug.cgi?id=1806690)
+
 ## [2.6] - 2023-03-12
 
 ### Added

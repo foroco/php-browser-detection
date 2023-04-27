@@ -25,8 +25,8 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * 
-* @version 2.6
-* @last-modified March 12, 2023
+* @version 2.7
+* @last-modified April 27, 2023
 * @link https://github.com/foroco/php-browser-detection
 */
 
@@ -938,6 +938,14 @@ class BrowserDetection
 					if (!empty($match[1])) $this->result_browser_gecko_version = intval($match[1]);
 				}
 			}
+
+			// Gecko >= 109 issue
+
+			if ($this->result_browser_gecko_version >= 109)
+			{
+				$match = $this->match_ua('/\srv:[0-9]+\.[0-9]+\)\sGecko\/[.0-9]+\s.*Firefox\/([0-9]+)\./');
+				if (!empty($match[1])) $this->result_browser_gecko_version = intval($match[1]);
+			}
 		}
 		
 		// WebKit engine detection
@@ -1006,7 +1014,7 @@ class BrowserDetection
 			$browser_list[] = array('Cyberfox', 'Cyberfox/', '/Cyberfox\/([0-9]+)/', '1', '');
 			$browser_list[] = array('SeaMonkey', 'SeaMonkey/', '/SeaMonkey\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('K-Meleon', 'K-Meleon', '/K\-Meleon\/([0-9]+\.[0-9]+)/', '1', '');
-			$browser_list[] = array('Iceweasel', '/Ice[wW]easel/', '/Ice[wW]easel(\/|\s)([0-9]+\.[0-9]+)/', '2', '');
+			$browser_list[] = array('Iceweasel', '/[iI]ce[wW]easel/', '/[iI]ce[wW]easel/', '1', '');
 			$browser_list[] = array('IceApe', 'Iceape/', '/Iceape\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('Comodo Ice Dragon', 'IceDragon/', '/IceDragon\/([0-9]+\.[0-9]+)/', '1', '');
 			$browser_list[] = array('QtWeb', 'QtWeb Internet Browser/', '/QtWeb\sInternet\sBrowser\/([0-9]+\.[0-9]+)/', '1', '');
@@ -1381,6 +1389,7 @@ class BrowserDetection
 			$browsers_without_versions[] = 'Pinterest App';
 			$browsers_without_versions[] = 'Ali App';
 			$browsers_without_versions[] = 'Alipay App';
+			$browsers_without_versions[] = 'Iceweasel';
 			
 			if (in_array($this->result_browser_name, $browsers_without_versions) || isset($darwin_app))
 			{
