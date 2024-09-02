@@ -389,7 +389,7 @@ To pasre all possible environment data and returns JSON format string:
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36';
-$result = $Browser->getAll($useragent);
+$result = $Browser->getAll($useragent, 'JSON');
 print_r($result);
 
 ?>
