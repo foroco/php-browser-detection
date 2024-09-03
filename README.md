@@ -423,8 +423,8 @@ Recent releases of WebKit, Chromium, and Gecko-based browsers no longer include 
 
 **See reference**:
 
-https://issues.chromium.org/issues/40167872
-https://bugzilla.mozilla.org/show_bug.cgi?id=1679929
+https://issues.chromium.org/issues/40167872 \
+https://bugzilla.mozilla.org/show_bug.cgi?id=1679929 \
 https://bugs.webkit.org/show_bug.cgi?id=217364
 
 One approach is to use the HTTP Client Hints headers, specifically the Sec-CH-UA-Platform-Version header. It's important to note, however, that only Chromium-based browsers currently support sending Client Hints headers.
