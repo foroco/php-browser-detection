@@ -3,7 +3,7 @@
 require_once('../src/BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
-// Testing some main and rare User-Agents
+// Testing WebView User-Agents
 
 $useragent[] = 'Mozilla/5.0 (Linux; Android 4.4.4; Coolpad 8675-A Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 SogouMSESDK hot_sdk_1.5.0';
 $useragent[] = 'Mozilla/5.0 (Linux; U; Android 4.2.2; ru-ru; NaviPad TM-7855 3G Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30 YandexSearch/7.15/apad';

@@ -1,22 +1,19 @@
 # PHP Browser Detection
 
-A PHP library to detect browser, OS, platform and device type by User-Agent parsing.\
-This library focused on high performance and low memory usage HTTP client parsing.\
-Uses a simple and fast algorithm to accurately detect more than 200 browsers/apps and over 60 OS.\
-For most commonly browsers parsing process took less than 0.0005 second even on low-level shared hosting.\
-In the case of rare User-Agents recognized time is less than 0.0008 second for the same conditioned hosting environment.\
-The library supports only really actual Browsers and OS without support for outdated environments that are actually not used now.\
-Newest MacOS Monterey, MacOS Ventura and Windows 11 User-Agents detection included.\
-Works by use only one library file and without any third-party libraries dependency.
+A PHP library for detecting the browser, operating system (OS), platform, and device type through User-Agent parsing, designed with a focus on high performance and minimal memory usage during HTTP client parsing.\
+It uses a simple yet fast algorithm to accurately identify over 200 browsers/apps and more than 60 OS.\
+Parsing the most common browsers takes less than 0.0005 seconds, even on low-end shared hosting environments. For rare User-Agents, recognition times are under 0.0008 seconds in the same hosting conditions.\
+The library is exclusively tailored for current browsers and OS, omitting support for outdated environments that are no longer in use.\
+The library operates using a single file and does not rely on any third-party dependencies.
 
 ## Requirements
 
-This library requires PHP 5.3 or higher.
+This library requires PHP 5.3 or later.
 
 ## Manual installation
 
-1. Simply upload library file `BrowserDetection.php` (placed in the `src` directory) to your project;
-2. Connect PHP library file by using `require_once`:
+1. Simply upload the library file `BrowserDetection.php` (located in the `src` directory) to your project;
+2. Include the PHP library file using `require_once`:
 
 ```php
 <?php
@@ -54,8 +51,8 @@ require ('vendor/autoload.php');
 
 ## Usage
 
-The library will try to get environment data from the `HTTP_USER_AGENT` header sent by the HTTP client.
-Library PHP Class `BrowserDetection` contains four public methods which return Array or JSON string of recognized data from `HTTP_USER_AGENT`:
+The library attempts to retrieve environment data from the `HTTP_USER_AGENT` header sent by the HTTP client.\
+The `BrowserDetection` PHP class within this library provides four public methods that return either an array or a JSON string containing the detected data extracted from the `HTTP_USER_AGENT`:
 
 * `getAll();`
 * `getOS();`
@@ -130,8 +127,8 @@ Example: `Windows`, `Android`, `macOS`, `iOS` etc.
 **OS Version** (`os_version`)\
 Returns operating system (OS) version or `0` in cases of unable OS version recognition.\
 May contains numeric, string or mixed types OS versions.\
-In case of numeric OS version (e.g. `Android`) contains major and minor version parts values, e.g. `4.4`, `8.1`, `10` etc.\
-In case of string OS version (e.g. `macOS`) contains string version name values, e.g. `Mavericks`, `Mojave`, `Catalina` etc.\
+In case of numeric OS version (e.g. `Android`) contains major and minor version parts values, e.g. `4.4`, `8.1`, `10`, `14` etc.\
+In case of string OS version (e.g. `macOS`) contains string version name values, e.g. `Mavericks`, `Mojave`, `Catalina`, `Big Sur` etc.\
 For `Windows` may contains mixed version types values: `10`, `Vista`, `XP` etc.
 
 **OS Title** (`os_title`)\
@@ -158,7 +155,7 @@ Example: `Chrome`, `Firefox`, `UC Browser`, `Huawei Browser`, `Vivaldi` etc.
 Returns browser version number or `0` in cases of unable browser version recognition.\
 Always contains numeric values (integer or float numbers).\
 Returns float number (e.g. `3.5`, `10.5`, `13.1`) for some browsers which should contains both major and minor browser version parts (`Safari`, `Vivaldi`, `PaleMoon` etc).\
-Returns only major decimal browser version (e.g. `15`, `37`, `81`) for other browsers which has a lot of major versions (`Chrome`, `Firefox`, `Opera` etc).
+Returns only major decimal browser version (e.g. `15`, `37`, `128`) for other browsers which has a lot of major versions (`Chrome`, `Firefox`, `Opera` etc).
 
 **Browser Title** (`browser_title`)\
 Returns browser title which contains browser name and browser version together.\
@@ -199,7 +196,7 @@ Available only for `getAll();` and `getOS();` methods.
 
 ## Usage Examples
 
-See follow examples to understand library usage use cases.
+Here are some examples to help you understand the library usage scenarios.
 
 ### Detect All
 
@@ -253,7 +250,7 @@ To parse only OS data use:
 
 $Browser = new foroco\BrowserDetection();
 
-$useragent = 'Mozilla/5.0 (Linux; arm_64; Android 9; LLD-L31) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.136 YaBrowser/20.2.4.153.00 Mobile Safari/537.36';
+$useragent = 'Mozilla/5.0 (Linux; arm_64; Android 14; SM-G965F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6613.99 YaBrowser/24.7.4.147 Mobile Safari/537.36';
 $result = $Browser->getOS($useragent);
 print_r($result);
 
@@ -268,8 +265,8 @@ Array
     [os_type] => mobile
     [os_family] => android
     [os_name] => Android
-    [os_version] => 9
-    [os_title] => Android 9
+    [os_version] => 14
+    [os_title] => Android 14
     [64bits_mode] => 1
 )
 ```
@@ -283,7 +280,7 @@ To parse only browser data use:
 
 $Browser = new foroco\BrowserDetection();
 
-$useragent = 'Mozilla/5.0 (iPad; CPU OS 9_3_4 like Mac OS X) AppleWebKit/601.1 (KHTML, like Gecko) CriOS/80.0.3987.122 Mobile/13G35 Safari/601.1.46';
+$useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/128.0.6613.98 Mobile/15E148 Safari/604.1';
 $result = $Browser->getBrowser($useragent);
 print_r($result);
 
@@ -296,12 +293,12 @@ Returns:
 Array
 (
     [browser_name] => Chrome
-    [browser_version] => 80
-    [browser_title] => Chrome 80
+    [browser_version] => 128
+    [browser_title] => Chrome 128
     [browser_chrome_original] => 1
     [browser_firefox_original] => 0
     [browser_safari_original] => 0
-    [browser_chromium_version] => 80
+    [browser_chromium_version] => 128
     [browser_gecko_version] => 0
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
@@ -344,7 +341,7 @@ To detect if mobile browser works in `Desktop Mode` use:
 
 $Browser = new foroco\BrowserDetection();
 
-$useragent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36';
+$useragent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
 $Browser->setTouchSupport(); // Call if Touch events detected in browser by JavaScript code ('ontouchstart' in window)
 $result = $Browser->getAll($useragent);
 print_r($result);
@@ -364,12 +361,12 @@ Array
     [os_title] => Android
     [device_type] => mobile
     [browser_name] => Chrome
-    [browser_version] => 81
-    [browser_title] => Chrome 81
+    [browser_version] => 128
+    [browser_title] => Chrome 128
     [browser_chrome_original] => 1
     [browser_firefox_original] => 0
     [browser_safari_original] => 0
-    [browser_chromium_version] => 81
+    [browser_chromium_version] => 128
     [browser_gecko_version] => 0
     [browser_webkit_version] => 0
     [browser_android_webview] => 0
@@ -389,7 +386,7 @@ To pasre all possible environment data and returns JSON format string:
 $Browser = new foroco\BrowserDetection();
 
 $useragent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36';
-$result = $Browser->getAll($useragent);
+$result = $Browser->getAll($useragent, 'JSON');
 print_r($result);
 
 ?>
@@ -403,7 +400,7 @@ Returns:
 
 ## Benchmarking Test
 
-Benchmarking was performed on a low-level shared hosting.\
+Benchmarking was performed on a low-level shared hosting environment.\
 Test server configuration: RedHat Linux + LiteSpeed + PHP Extension.\
 Test conditions based on collection of random ~446000 non repeated real life User-Agent strings.
 
@@ -416,11 +413,27 @@ getBrowser: ~ 43000 rps
 getDevice: ~ 70000 rps
 ```
 
+## Important notice
+
+Unfortunately, the major browser engines have "frozen" the OS version information in the User-Agent header.\
+For example, on macOS, the OS version information in the User-Agent is **"frozen"** at the `macOS Big Sur` release level (`Mac OS X 10_15_7`).\
+On Windows, the OS version information is **"frozen"** in the User-Agent at the `Windows 10` release level (`Windows NT 10.0`).
+
+Recent releases of WebKit, Chromium, and Gecko-based browsers no longer include **correct** current OS version information in the User-Agent header.
+
+**See reference**:
+
+https://issues.chromium.org/issues/40167872
+https://bugzilla.mozilla.org/show_bug.cgi?id=1679929
+https://bugs.webkit.org/show_bug.cgi?id=217364
+
+One approach is to use the HTTP Client Hints headers, specifically the Sec-CH-UA-Platform-Version header. It's important to note, however, that only Chromium-based browsers currently support sending Client Hints headers.
+
 ## License
 
 The MIT License (MIT)
 
-Copyright (c) 2020-2023 Artem Murugov
+Copyright (c) 2020-2024 Artem Murugov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

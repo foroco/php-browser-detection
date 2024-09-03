@@ -3,7 +3,7 @@
 require_once('../src/BrowserDetection.php');
 $Browser = new foroco\BrowserDetection();
 
-// Testing some TV User-Agent strings
+// Testing TV User-Agent strings
 
 $useragent[] = 'Mozilla/5.0 (CrKey armv7l 1.5.16041) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.0 Safari/537.36';
 $useragent[] = 'Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.84 Safari/537.36 CrKey/1.21a.76178';

@@ -2,6 +2,37 @@
 
 All notable changes to this `PHP Browser Detection` project documented in this file.
 
+## [2.8] - 2024-09-03
+
+### Changed
+
+- Safari Mobile browser detection improved;
+- Yandex App and Yandex Browser detection improved;
+- Baidu Mobile Browser renamed to DU Browser;
+- MIUI Browser renamed to Mi Browser;
+- Naver Search App renamed to Naver App;
+- 115Browser renamed to 115 Browser;
+- QQBrowser renamed to QQ Browser;
+- AVG Secure Browser renamed to AVG Browser;
+- MxNitro renamed to Maxthon Nitro;
+- WeChat App moved to cross-device detections.
+
+### Added
+
+- Added detection for: DuckDuckGo, Aloha Browser, Opera GX, Ghostery Browser, SmartTV Browser, Adblock Browser, Stargon, Hi Browser, JioPages, You Browser, Max Browser, Biscuit, Chromium GOST, Dashob, Dezor, Duoyu Browser, Mypal Browser, iTop Browser, Mercury, Polarity, Sielo, Roccat, Arctic Fox, Norton Browser, Avira Browser, Lenovo Browser, Sber Browser, Soul Browser, Samsung Browser TV;
+- Gnome Web browser detection on Linux;
+- Opera Touch on iOS detection added;
+- Chromium OS detection added as Chrome OS.
+
+### Fixed
+
+- MacOS/iOS WKWebView detection fixed and improved;
+- Desktop Mode detection fixed and improved for Android and iOS browsers;
+- Possible collisions with 'iPad' string matching in User-Agent (e.g HiPad on Android device) fixed;
+- Basilisk browser detection fixed;
+- Chrome iOS browser detection fixed;
+- Firefox iOS browser detection fixed.
+
 ## [2.7] - 2023-04-27
 
 ### Fixed
